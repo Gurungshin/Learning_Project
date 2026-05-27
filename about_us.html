@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LinkFlow — About Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://db.onlinewebfonts.com/c/6e47ef470dd19698c911332a9b4d1cf4?family=Neue+Haas+Grotesk+Text+Pro" rel="stylesheet" />
+<link href="https://db.onlinewebfonts.com/c/dec0d9b4e22ca588dc20e1e2e09a59b5?family=Neue+Haas+Grotesk+Display+Pro+55+Roman" rel="stylesheet" />
+<link rel="stylesheet" href="asset/Css/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+/* body {
+  font-family: 'Neue Haas Grotesk Display Pro 55 Roman', 'Neue Haas Grotesk Text Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #f5f3ee;
+  color: #1f2a1d;
+  overflow-x: hidden;
+  max-width: 100vw;
+} */
+
+/* ═══ ABOUT HERO ═══ */
+.about-hero {
+  position: relative;
+  background: #1f2a1d;
+  padding: 10rem 2.5rem 7rem;
+  overflow: hidden;
+}
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(133,171,139,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.about-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(133,171,139,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(133,171,139,0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.about-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: end;
+}
+.about-hero-left .eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #85AB8B; margin-bottom: 1.5rem;
+}
+.about-hero-left .eyebrow span { display: inline-block; width: 1.5rem; height: 1px; background: #85AB8B; }
+.about-hero-left h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-weight: 400; color: #fff; letter-spacing: -0.035em; line-height: 1.0;
+  margin-bottom: 1.75rem;
+}
+.about-hero-left h1 em { font-style: normal; color: #85AB8B; }
+.about-hero-left p {
+  font-size: 1.0625rem; color: rgba(255,255,255,0.60); line-height: 1.7; max-width: 30rem;
+}
+.about-hero-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+}
+.hero-stat {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(133,171,139,0.20);
+  border-radius: 1rem;
+  padding: 1.75rem 1.5rem;
+}
+.hero-stat .num {
+  font-size: 2.75rem; font-weight: 400; letter-spacing: -0.04em; color: #fff; line-height: 1;
+}
+.hero-stat .unit { font-size: 1.5rem; color: #85AB8B; }
+.hero-stat .label { font-size: 0.8125rem; color: rgba(255,255,255,0.50); margin-top: 0.5rem; line-height: 1.5; }
+.hero-stat.span2 { grid-column: span 2; display: flex; align-items: center; gap: 2rem; }
+.hero-stat.span2 .num { font-size: 2rem; }
+
+/* ═══ SECTION SHARED ═══ */
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #336443; margin-bottom: 1.25rem;
+}
+.section-eyebrow span { display: inline-block; width: 1.5rem; height: 1px; background: #336443; }
+.section-heading {
+  font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 400; color: #1f2a1d;
+  letter-spacing: -0.03em; line-height: 1.08; max-width: 75rem;
+}
+.section-heading em { font-style: normal; color: #85AB8B; }
+.section-sub { margin-top: 1.25rem; font-size: 1rem; color: #4b5b47; line-height: 1.7; max-width: 32rem; }
+
+/* ═══ STORY SECTION ═══ */
+#story { background: #fff; }
+#story .inner {
+  max-width: 1200px; margin: 0 auto; padding: 7rem 2.5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+}
+.story-img-block {
+  position: relative;
+}
+.story-img-card {
+  background: #edf4ee;
+  border-radius: 1.5rem;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.story-svg-art {
+  width: 100%; height: 100%; position: absolute; inset: 0;
+}
+.story-badge {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  background: #1f2a1d;
+  color: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  max-width: 14rem;
+  box-shadow: 0 8px 24px rgba(31,42,29,0.25);
+}
+.story-badge strong { display: block; font-size: 1.5rem; font-weight: 400; color: #85AB8B; letter-spacing: -0.03em; margin-bottom: 0.25rem; }
+.story-timeline { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+.timeline-item { display: flex; gap: 1.5rem; position: relative; padding-bottom: 2rem; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0.6875rem;
+  top: 2.5rem;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, #c5d9c6, transparent);
+}
+.timeline-item:last-child::before { display: none; }
+.tl-dot {
+  width: 1.375rem; height: 1.375rem; border-radius: 9999px; background: #edf4ee;
+  border: 2px solid #85AB8B; flex-shrink: 0; margin-top: 0.125rem; position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.tl-dot::after { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: #336443; }
+.tl-year { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #85AB8B; margin-bottom: 0.25rem; }
+.tl-title { font-size: 0.9375rem; font-weight: 600; color: #1f2a1d; margin-bottom: 0.375rem; }
+.tl-desc { font-size: 0.8125rem; color: #4b5b47; line-height: 1.65; }
+
+/* ═══ VALUES SECTION ═══ */
+#values { background: #f5f3ee; }
+#values .inner { max-width: 1200px; margin: 0 auto; padding: 7rem 2.5rem; }
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+.value-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  padding: 2.25rem 2rem;
+  border: 1px solid rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+}
+.value-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -0.5rem;
+  right: 1.5rem;
+  font-size: 5rem;
+  font-weight: 700;
+  color: rgba(133,171,139,0.10);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  pointer-events: none;
+}
+.value-icon { width: 2.75rem; height: 2.75rem; border-radius: 0.875rem; background: #edf4ee; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+.value-icon svg { width: 1.25rem; height: 1.25rem; color: #336443; }
+.value-card h3 { font-size: 1.0625rem; font-weight: 600; color: #1f2a1d; margin-bottom: 0.625rem; }
+.value-card p { font-size: 0.875rem; color: #4b5b47; line-height: 1.7; }
+
+/* ═══ NEW: ARCHITECTURE SECTION ═══ */
+#architecture { background: #fff; }
+#architecture .inner { max-width: 1200px; margin: 0 auto; padding: 7rem 2.5rem; }
+.arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
+.arch-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.arch-metric-card { background: #f5f5f5; border-radius: 1rem; padding: 2rem; border-left: 3px solid #336443; }
+.arch-metric-card h3 { font-size: 1.75rem; font-weight: 600; color: #1f2a1d; margin-bottom: 0.5rem; }
+.arch-metric-card h4 { font-size: 0.9375rem; font-weight: 600; color: #336443; margin-bottom: 0.5rem; }
+.arch-metric-card p { font-size: 0.8125rem; color: #4b5b47; line-height: 1.6; }
+
+/* ═══ NEW: PARTNERS SECTION ═══ */
+#partners { background: #1f2a1d; color: #fff; }
+#partners .inner { max-width: 1200px; margin: 0 auto; padding: 6rem 2.5rem; text-align: center; }
+#partners h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #85AB8B; margin-bottom: 3rem; }
+.partner-logos { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 3rem; opacity: 0.65; }
+.partner-logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.04em; color: #fff; display: flex; align-items: center; gap: 0.5rem; }
+.partner-logo svg { width: 1.5rem; height: 1.5rem; color: #85AB8B; }
+
+/* ═══ FAQ SECTION ═══ */
+#faq { background: #f5f3ee; }
+#faq .inner { max-width: 820px; margin: 0 auto; padding: 7rem 2.5rem; }
+#faq .faq-header { text-align: center; margin-bottom: 4rem; }
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 1px solid rgba(31,42,29,0.10);
+}
+.faq-item:first-child { border-top: 1px solid rgba(31,42,29,0.10); }
+.faq-question {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  background: none; border: none; padding: 1.5rem 0; font-family: inherit;
+  font-size: 1rem; font-weight: 600; color: #1f2a1d; cursor: pointer; text-align: left;
+}
+.faq-question svg { width: 1.125rem; height: 1.125rem; flex-shrink: 0; color: #336443; transition: transform 0.3s ease; }
+.faq-item.open .faq-question svg { transform: rotate(45deg); }
+.faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+.faq-item.open .faq-answer { grid-template-rows: 1fr; }
+.faq-answer > div { overflow: hidden; }
+.faq-answer p { padding-bottom: 1.5rem; font-size: 0.9375rem; color: #4b5b47; line-height: 1.75; }
+
+
+
+/* ═══ GSAP ═══ */
+.gsap-reveal { will-change: transform, opacity; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1180px) {
+  .pill-nav a { padding: 0.45rem 0.5rem; font-size: 0.775rem; }
+}
+@media (max-width: 1023px) {
+  .pill-nav { display: none; }
+  .hamburger { display: flex; }
+  .mobile-overlay { display: block; }
+  .about-hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .about-hero-right { max-width: 28rem; }
+  #story .inner { grid-template-columns: 1fr; gap: 3rem; }
+  .story-badge { bottom: -1rem; right: 0; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .arch-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+@media (max-width: 767px) {
+  .about-hero { padding: 8rem 1.25rem 5rem; }
+  .about-hero-right { grid-template-columns: 1fr 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  #story .inner, #values .inner, #architecture .inner { padding: 4.5rem 1.25rem; }
+  #faq .inner { padding: 4.5rem 1.25rem; }
+  footer { padding: 3rem 1.25rem 2rem; }
+  footer .inner { grid-template-columns: 1fr; gap: 2rem; }
+  .partner-logos { justify-content: center; gap: 2rem; }
+}
+@media (max-width: 639px) {
+  nav { padding: 0.875rem 1rem; }
+  .about-hero-right { grid-template-columns: 1fr 1fr; }
+  .hero-stat.span2 { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .arch-metrics { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">LinkFlow<sup>TM</sup></a>
+
+    <div class="pill-nav">
+      <a href="#" class="active">Home</a>
+
+        <a href="about_us.html">About_Us</a>
+
+      <div class="has-dropdown">
+        <a href="#how">
+          Services
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#how" class="nav-a">Workflow Automation</a>
+          <a href="#how" class="nav-a">FluxEngine AI</a>
+          <a href="#how" class="nav-a">Integrations</a>
+          <a href="#how" class="nav-a">Consulting</a>
+        </div>
+      </div>
+
+      <a href="#testimonials">Portfolio</a>
+
+      <div class="has-dropdown">
+        <a href="#how">
+          Technologies
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#how" class="nav-a">FluxEngine™</a>
+          <a href="#how" class="nav-a">API Platform</a>
+          <a href="#how" class="nav-a">Security Stack</a>
+        </div>
+      </div>
+
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </nav>
+
+ <div class="mobile-overlay" id="mobileOverlay">
+    <div class="backdrop" id="overlayBackdrop"></div>
+  </div>
+
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#">Home</a>
+
+      <a href="#">Home</a>
+
+      <!-- Services accordion -->
+      <div class="drawer-accordion">
+        <button class="drawer-accordion-btn" aria-expanded="false">
+          Services
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="drawer-accordion-panel">
+          <a href="#how">Workflow Automation</a>
+          <a href="#how">FluxEngine AI</a>
+          <a href="#how">Integrations</a>
+          <a href="#how">Consulting</a>
+        </div>
+      </div>
+
+      <a href="#testimonials">Portfolio</a>
+
+      <!-- Technologies accordion -->
+      <div class="drawer-accordion">
+        <button class="drawer-accordion-btn" aria-expanded="false">
+          Technologies
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="drawer-accordion-panel">
+          <a href="#how">FluxEngine™</a>
+          <a href="#how">API Platform</a>
+          <a href="#how">Security Stack</a>
+        </div>
+      </div>
+
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="drawer-ctas" id="drawerCtas"></div>
+  </div>
+
+<section class="about-hero">
+  <div class="about-hero-grid"></div>
+  <div class="about-hero-inner">
+    <div class="about-hero-left gsap-reveal" id="heroLeft">
+      <div class="eyebrow"><span></span> About LinkFlow</div>
+      <h1>Built to end the<br><em>data rift,</em><br>for good.</h1>
+      <p>We're a team of engineers, operators, and builders who got tired of watching smart people waste their days copy-pasting between tools. So we built the thing we always wished existed.</p>
+    </div>
+    <div class="about-hero-right gsap-reveal" id="heroRight">
+      <div class="hero-stat">
+        <div class="num">4<span class="unit">k+</span></div>
+        <div class="label">Teams running workflows today</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">340<span class="unit">+</span></div>
+        <div class="label">Native integrations available</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">2.1<span class="unit">B</span></div>
+        <div class="label">Events processed this month</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">99<span class="unit">.9%</span></div>
+        <div class="label">Uptime across all regions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="inner">
+    <div class="story-img-block gsap-reveal" id="storyImg">
+      <div class="story-img-card">
+        <svg class="story-svg-art" viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="560" height="420" fill="#edf4ee"/>
+          <g opacity="0.3">
+            <circle cx="56" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="112" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="168" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="224" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="280" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="336" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="392" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="448" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="504" cy="56" r="2" fill="#85AB8B"/>
+            <circle cx="56" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="112" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="168" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="224" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="280" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="336" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="392" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="448" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="504" cy="112" r="2" fill="#85AB8B"/>
+            <circle cx="56" cy="168" r="2" fill="#85AB8B"/>
+            <circle cx="112" cy="168" r="2" fill="#85AB8B"/>
+            <circle cx="168" cy="168" r="2" fill="#85AB8B"/>
+            <circle cx="280" cy="168" r="2" fill="#85AB8B"/>
+            <circle cx="336" cy="168" r="2" fill="#85AB8B"/>
+            <circle cx="392" cy="168" r="2" fill="#85AB8B"/>
+            <circle cx="448" cy="168" r="2" fill="#85AB8B"/>
+            <circle cx="504" cy="168" r="2" fill="#85AB8B"/>
+            <circle cx="56" cy="224" r="2" fill="#85AB8B"/>
+            <circle cx="112" cy="224" r="2" fill="#85AB8B"/>
+            <circle cx="336" cy="224" r="2" fill="#85AB8B"/>
+            <circle cx="392" cy="224" r="2" fill="#85AB8B"/>
+            <circle cx="448" cy="224" r="2" fill="#85AB8B"/>
+            <circle cx="504" cy="224" r="2" fill="#85AB8B"/>
+            <circle cx="56" cy="280" r="2" fill="#85AB8B"/>
+            <circle cx="112" cy="280" r="2" fill="#85AB8B"/>
+            <circle cx="168" cy="280" r="2" fill="#85AB8B"/>
+            <circle cx="224" cy="280" r="2" fill="#85AB8B"/>
+            <circle cx="392" cy="280" r="2" fill="#85AB8B"/>
+            <circle cx="448" cy="280" r="2" fill="#85AB8B"/>
+            <circle cx="504" cy="280" r="2" fill="#85AB8B"/>
+            <circle cx="56" cy="336" r="2" fill="#85AB8B"/>
+            <circle cx="112" cy="336" r="2" fill="#85AB8B"/>
+            <circle cx="168" cy="336" r="2" fill="#85AB8B"/>
+            <circle cx="224" cy="336" r="2" fill="#85AB8B"/>
+            <circle cx="280" cy="336" r="2" fill="#85AB8B"/>
+            <circle cx="448" cy="336" r="2" fill="#85AB8B"/>
+            <circle cx="504" cy="336" r="2" fill="#85AB8B"/>
+          </g>
+          <path d="M80 210 L180 210 L180 130 L350 130" stroke="#85AB8B" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+          <path d="M80 210 L80 290 L240 290 L240 360 L480 360" stroke="#336443" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
+          <path d="M350 130 L480 130 L480 210 L380 210 L380 290 L480 290" stroke="#85AB8B" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
+          <rect x="44" y="186" width="72" height="48" rx="10" fill="#fff" stroke="#c5d9c6" stroke-width="1.5"/>
+          <text x="80" y="214" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="10" font-weight="600" fill="#336443">Stripe</text>
+          <text x="80" y="227" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="8" fill="#4b5b47">payment</text>
+          <rect x="196" y="138" width="120" height="72" rx="14" fill="#1f2a1d"/>
+          <text x="256" y="167" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="11" font-weight="600" fill="#85AB8B">FluxEngine</text>
+          <text x="256" y="183" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="8.5" fill="rgba(255,255,255,0.55)">AI Decision Layer</text>
+          <circle cx="256" cy="196" r="3" fill="#85AB8B" opacity="0.7"/>
+          <circle cx="266" cy="196" r="3" fill="#85AB8B" opacity="0.4"/>
+          <circle cx="276" cy="196" r="3" fill="#85AB8B" opacity="0.2"/>
+          <rect x="356" y="104" width="72" height="48" rx="10" fill="#fff" stroke="#c5d9c6" stroke-width="1.5"/>
+          <text x="392" y="132" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="10" font-weight="600" fill="#336443">Slack</text>
+          <text x="392" y="145" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="8" fill="#4b5b47">alert</text>
+          <rect x="440" y="186" width="72" height="48" rx="10" fill="#fff" stroke="#c5d9c6" stroke-width="1.5"/>
+          <text x="476" y="214" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="10" font-weight="600" fill="#336443">HubSpot</text>
+          <text x="476" y="227" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="8" fill="#4b5b47">update</text>
+          <rect x="440" y="266" width="72" height="48" rx="10" fill="#fff" stroke="#c5d9c6" stroke-width="1.5"/>
+          <text x="476" y="294" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="10" font-weight="600" fill="#336443">Jira</text>
+          <text x="476" y="307" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="8" fill="#4b5b47">ticket</text>
+          <rect x="200" y="266" width="72" height="48" rx="10" fill="#fff" stroke="#c5d9c6" stroke-width="1.5"/>
+          <text x="236" y="294" text-anchor="middle" font-family="Helvetica Neue" font-size="10" font-weight="600" fill="#336443">Gmail</text>
+          <text x="236" y="307" text-anchor="middle" font-family="Helvetica Neue" font-size="8" fill="#4b5b47">sequence</text>
+        </svg>
+      </div>
+      <div class="story-badge">
+        <strong>2021</strong>
+        Founded in London with a single mission: no more copy-paste workflows.
+      </div>
+    </div>
+
+    <div class="gsap-reveal" id="storyText">
+      <div class="section-eyebrow"><span></span> Our Story</div>
+      <h2 class="section-heading">From a side project to <em>4,000 teams</em></h2>
+      <p class="section-sub">LinkFlow started as a weekend experiment after our founders spent a full week manually syncing Salesforce with a homegrown data warehouse. There had to be a better way.</p>
+
+      <div class="story-timeline">
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2021 — London</div>
+            <div class="tl-title">Rift spotted</div>
+            <div class="tl-desc">Arjun and Fiona quit their jobs after a shared epiphany: every ops team they knew was drowning in the same disconnected-tool problem.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2022 — Seed round</div>
+            <div class="tl-title">First 100 customers & $4M raised</div>
+            <div class="tl-desc">Word spread fast. We launched to a waitlist of 600, onboarded our first 100 teams in 6 weeks, and closed a seed round to fund the core platform.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2023 — FluxEngine</div>
+            <div class="tl-title">AI layer ships</div>
+            <div class="tl-desc">We launched FluxEngine — the AI decision layer that reads intent, not just events. Customer NPS jumped 28 points in the quarter it launched.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2025 — Series B</div>
+            <div class="tl-title">$42M to close the rift for every enterprise</div>
+            <div class="tl-desc">We raised our Series B to build deeper enterprise infrastructure, expand to APAC and LATAM, and grow to 340+ integrations.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="values">
+  <div class="inner">
+    <div class="gsap-reveal" id="valuesHeader">
+      <div class="section-eyebrow"><span></span> What We Believe</div>
+      <h2 class="section-heading">The principles that <em>shape everything</em></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card gsap-reveal" data-num="01">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Ruthless reliability</h3>
+        <p>Workflows are mission-critical infrastructure. We hold ourselves to 99.99% uptime and treat every downtime minute as a personal failure. Reliability isn't a feature — it's the foundation.</p>
+      </div>
+      <div class="value-card gsap-reveal" data-num="02">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>People over pipelines</h3>
+        <p>Technology should amplify human judgement, not replace it. We build tools that give people back the time to think, create, and make decisions — not tools that make decisions for them.</p>
+      </div>
+      <div class="value-card gsap-reveal" data-num="03">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Radical transparency</h3>
+        <p>Every workflow run is fully observable. Every pricing tier is honestly documented. We don't hide complexity behind abstraction — we make it legible so you stay in control.</p>
+      </div>
+      <div class="value-card gsap-reveal" data-num="04">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Default to speed</h3>
+        <p>Slow iteration is a form of disrespect to the people waiting for a solution. We ship fast, learn fast, and fix fast. Perfection is a direction, not a destination before launch.</p>
+      </div>
+      <div class="value-card gsap-reveal" data-num="05">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Security is non-negotiable</h3>
+        <p>We handle sensitive data for thousands of teams. SOC 2 Type II, end-to-end encryption, and zero-trust architecture aren't checkboxes — they're the baseline we hold ourselves to from day one.</p>
+      </div>
+      <div class="value-card gsap-reveal" data-num="06">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L13.5 8.5L19 10L13.5 11.5L12 17L10.5 11.5L5 10L10.5 8.5L12 3Z"/></svg>
+        </div>
+        <h3>Genuine curiosity</h3>
+        <p>The best automation ideas don't come from engineers alone — they come from listening obsessively to the people running operations at 2am. We stay close to the problem, always.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="inner">
+    <div class="gsap-reveal" id="archHeader">
+      <div class="section-eyebrow"><span></span> Engineering Excellence</div>
+      <h2 class="section-heading">Architected for <em>uncompromising scale</em></h2>
+    </div>
+    
+    <div class="arch-grid">
+      <div class="gsap-reveal" id="archText">
+        <p class="section-sub" style="margin-top:0; max-width:100%;">
+          FluxEngine isn't just an API wrapper—it is a purpose-built state execution machine engineered to eliminate execution lag across modern systems. Our runtime safely decouples systemic input fluctuations from system logic, meaning transaction heavy spikes never trigger pipeline congestion.
+        </p>
+        <p class="section-sub" style="max-width:100%; margin-top:1rem;">
+          By distributing event computation workflows uniformly across hybrid clusters, we secure deterministic delivery targets while processing billions of dynamic telemetry adjustments every single minute.
+        </p>
+      </div>
+      <div class="arch-metrics gsap-reveal" id="archCards">
+        <div class="arch-metric-card">
+          <h3>&lt; 12ms</h3>
+          <h4>P99 Global Latency</h4>
+          <p>Edge runtime nodes run distributed schedules instantly near primary software ecosystem clusters.</p>
+        </div>
+        <div class="arch-metric-card">
+          <h3>99.99%</h3>
+          <h4>Isolation Factor</h4>
+          <p>Fault-tolerant isolation spaces guarantee run safety, blocking cross-tenant configuration conflicts.</p>
+        </div>
+        <div class="arch-metric-card">
+          <h3>Zero</h3>
+          <h4>State Retain-Loss</h4>
+          <p>Continuous recovery mapping safeguards historical runtime tracking strings across sudden disconnect events.</p>
+        </div>
+        <div class="arch-metric-card">
+          <h3>Infinite</h3>
+          <h4>Linear Threading</h4>
+          <p>Elastic memory architecture expands horizontally dynamically during surprise enterprise demand spikes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners">
+  <div class="inner gsap-reveal" id="partnersContainer">
+    <h2>Trusted by Industry Innovators</h2>
+    <div class="partner-logos">
+      <div class="partner-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        VERTEX_DATA
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 16.5c-1.5 1.26-2.5 3.19-2.5 5.5h20c0-2.31-1-4.24-2.5-5.5M12 2a5 5 0 1 0 0 10 5 5 0 1 0 0-10z"/></svg>
+        AETHER_CAPITAL
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+        NEXUS_FLOW
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        KRYPTON_SEC
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="inner">
+    <div class="faq-header gsap-reveal">
+      <div class="section-eyebrow" style="justify-content:center;"><span></span> FAQ</div>
+      <h2 class="section-heading" style="text-align:center; margin:0 auto;">Everything you might <em>want to know</em></h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-question">
+          What exactly does LinkFlow do?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><div><p>LinkFlow connects your business tools — CRMs, payment processors, messaging platforms, databases — and automates the workflows between them using our AI decision layer, FluxEngine. Think of it as the intelligent connective tissue between your stack, acting on signals in real time without you having to write a single line of code.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How is LinkFlow different from Zapier or Make?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><div><p>Traditional automation tools are trigger-then-action. LinkFlow's FluxEngine layer reads intent — not just events. It understands context, handles branching logic intelligently, scales to billions of events per month, and gives your team full observability into every decision it makes. We're built for teams where automation is mission-critical infrastructure, not a weekend project.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Is my data secure on LinkFlow?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><div><p>Absolutely. We're SOC 2 Type II certified and use end-to-end encryption and zero-trust architecture across all data in transit and at rest. We never use your workflow data to train models, and you retain full ownership of everything that passes through LinkFlow. Enterprise plans also support custom data residency and SAML SSO.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What integrations do you support?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><div><p>We support 340+ native integrations including Salesforce, HubSpot, Stripe, Slack, Jira, Notion, Gmail, Intercom, Snowflake, and more. Our REST API and webhook system lets you connect any service that doesn't have a native integration. We add new connectors every two weeks based on customer requests.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I try LinkFlow before committing?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><div><p>Yes — we offer a 14-day free trial with full access to all features, no credit card required. For enterprise teams, we also offer a guided proof-of-concept where our solutions engineers work with you to build your first production workflow. Most teams have something running within 48 hours.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Where is the LinkFlow team based?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><div><p>Our headquarters are in London, with a growing team in New York. The majority of our 48-person team works remotely across 12 time zones. We run quarterly in-person sprints so the whole team connects face-to-face, and we take a No-Meeting Fridays policy seriously everywhere.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+    <div class="inner">
+      <div class="footer-brand">
+        <div class="logo-text">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          LinkFlow<sup>TM</sup>
+        </div>
+        <p>AI-driven workflow automation that connects your tools, interprets your signals, and acts — instantly.</p>
+        
+        <div class="socials">
+          <a href="#" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+          </a>
+          <a href="#" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#">FluxEngine AI</a></li>
+          <li><a href="#">Integrations</a></li>
+          <li><a href="#">Workflow Builder</a></li>
+          <li><a href="#">Observability</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Changelog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Status</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© All rights reserved <strong>LinkFlow</strong>. | Powered by Webflow</p>
+    </div>
+
+    <div class="footer-giant-text">
+      LinkFlow
+    </div>
+  </footer>
+
+<script src="asset/js/scr.js"></script>
+<script src="asset/js/tes.js"></script>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+  const overlay   = document.getElementById('mobileOverlay');
+  const drawer    = document.getElementById('mobileDrawer');
+  const backdrop  = document.getElementById('overlayBackdrop');
+  const dLinks      = document.querySelectorAll('#drawerLinks > a');
+  const dAccordions = document.querySelectorAll('#drawerLinks .drawer-accordion');
+  const dCtas       = document.getElementById('drawerCtas');
+  let menuOpen = false;
+  function openMenu() {
+    menuOpen = true;
+    document.body.style.overflow = 'hidden';
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded','true');
+    hamburger.setAttribute('aria-label','Close menu');
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    const items = Array.from(document.querySelectorAll('#drawerLinks > a, #drawerLinks > .drawer-accordion'));
+    items.forEach((el, i) => {
+      el.style.transitionDelay = (120 + i * 60) + 'ms';
+      setTimeout(() => el.classList.add('visible'), 10);
+    });
+    dCtas.style.transitionDelay = (120 + items.length * 60 + 60) + 'ms';
+    setTimeout(() => dCtas.classList.add('visible'), 10);
+  }
+  function closeMenu() {
+    menuOpen = false;
+    document.body.style.overflow = '';
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false');
+    hamburger.setAttribute('aria-label','Open menu');
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    document.querySelectorAll('#drawerLinks > a, #drawerLinks > .drawer-accordion').forEach(el => {
+      el.style.transitionDelay = '0ms';
+      el.classList.remove('visible');
+    });
+    dAccordions.forEach(acc => {
+      acc.querySelector('.drawer-accordion-panel').classList.remove('open');
+      acc.querySelector('.drawer-accordion-btn').setAttribute('aria-expanded','false');
+    });
+    dCtas.style.transitionDelay = '0ms';
+    dCtas.classList.remove('visible');
+  }
+  hamburger.addEventListener('click', ()=>menuOpen?closeMenu():openMenu());
+  backdrop.addEventListener('click', closeMenu);
+  // Close drawer when a sub-link (inside accordion panel) is clicked
+  drawer.querySelectorAll('.drawer-accordion-panel a').forEach(a => a.addEventListener('click', closeMenu));
+  // Close drawer for top-level direct links
+  document.querySelectorAll('#drawerLinks > a').forEach(a => a.addEventListener('click', closeMenu));
+
+  /* ── Drawer accordion toggles ── */
+  dAccordions.forEach(acc => {
+    const btn   = acc.querySelector('.drawer-accordion-btn');
+    const panel = acc.querySelector('.drawer-accordion-panel');
+    // Wrap children in a single div for grid collapse trick
+    if (!panel.querySelector(':scope > div')) {
+      const inner = document.createElement('div');
+      while (panel.firstChild) inner.appendChild(panel.firstChild);
+      panel.appendChild(inner);
+    }
+    btn.addEventListener('click', () => {
+      const isOpen = panel.classList.contains('open');
+      // Close all others
+      dAccordions.forEach(other => {
+        other.querySelector('.drawer-accordion-panel').classList.remove('open');
+        other.querySelector('.drawer-accordion-btn').setAttribute('aria-expanded','false');
+      });
+      if (!isOpen) {
+        panel.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  /* ── Dropdown menus (click to open) ── */
+  document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const parent = this.closest('.has-dropdown');
+      const isOpen = parent.classList.contains('open');
+      document.querySelectorAll('.has-dropdown').forEach(d => d.classList.remove('open'));
+      if (!isOpen) parent.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.has-dropdown')) {
+      document.querySelectorAll('.has-dropdown').forEach(d => d.classList.remove('open'));
+    }
+  });
+
+  /* ── Scroll-aware nav ── */
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }, { passive: true });
+
+  /* ── Billing toggle ── */
+  const toggle = document.getElementById('billingToggle');
+  let annual = true;
+  toggle.addEventListener('click', function() {
+    annual = !annual;
+    toggle.classList.toggle('annual', annual);
+    document.querySelectorAll('.plan-price .amount').forEach(el => {
+      const val = annual ? el.dataset.annual : el.dataset.monthly;
+      if (val) el.textContent = val;
+    });
+  });
+</script>
+</body>
+</html>

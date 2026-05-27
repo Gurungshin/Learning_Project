@@ -1,4 +1,3 @@
-
 (function() {
   // Register ScrollTrigger Plugin
   gsap.registerPlugin(ScrollTrigger);
@@ -49,72 +48,86 @@
   if (video.readyState >= 1) { video.play().catch(()=>{}); hasVFC ? video.requestVideoFrameCallback(vfcLoop) : (rafId = requestAnimationFrame(rafLoop)); }
 
   /* ── Mobile menu ── */
-  const hamburger = document.getElementById('hamburger');
-  const overlay   = document.getElementById('mobileOverlay');
-  const drawer    = document.getElementById('mobileDrawer');
-  const backdrop  = document.getElementById('overlayBackdrop');
-  const dLinks      = document.querySelectorAll('#drawerLinks > a');
-  const dAccordions = document.querySelectorAll('#drawerLinks .drawer-accordion');
-  const dCtas       = document.getElementById('drawerCtas');
+  const hamburger = document.querySelector('.hamburger');
+  const overlay   = document.querySelector('.mobile-overlay');
+  const drawer    = document.querySelector('.mobile-drawer');
+  const backdrop  = document.querySelector('.mobile-overlay .backdrop');
+  const dCtas       = document.querySelector('.drawer-ctas');
+  const dAccordions = document.querySelectorAll('.drawer-accordion');
   let menuOpen = false;
-  function openMenu() {
-    menuOpen = true;
-    document.body.style.overflow = 'hidden';
-    hamburger.classList.add('open');
-    hamburger.setAttribute('aria-expanded','true');
-    hamburger.setAttribute('aria-label','Close menu');
-    overlay.classList.add('open');
-    drawer.classList.add('open');
-    const items = Array.from(document.querySelectorAll('#drawerLinks > a, #drawerLinks > .drawer-accordion'));
-    items.forEach((el, i) => {
-      el.style.transitionDelay = (120 + i * 60) + 'ms';
-      setTimeout(() => el.classList.add('visible'), 10);
-    });
-    dCtas.style.transitionDelay = (120 + items.length * 60 + 60) + 'ms';
-    setTimeout(() => dCtas.classList.add('visible'), 10);
-  }
-  function closeMenu() {
-    menuOpen = false;
-    document.body.style.overflow = '';
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
-    hamburger.setAttribute('aria-label','Open menu');
-    overlay.classList.remove('open');
-    drawer.classList.remove('open');
-    document.querySelectorAll('#drawerLinks > a, #drawerLinks > .drawer-accordion').forEach(el => {
-      el.style.transitionDelay = '0ms';
-      el.classList.remove('visible');
-    });
-    dAccordions.forEach(acc => {
-      acc.querySelector('.drawer-accordion-panel').classList.remove('open');
-      acc.querySelector('.drawer-accordion-btn').setAttribute('aria-expanded','false');
-    });
-    dCtas.style.transitionDelay = '0ms';
-    dCtas.classList.remove('visible');
-  }
-  hamburger.addEventListener('click', ()=>menuOpen?closeMenu():openMenu());
-  backdrop.addEventListener('click', closeMenu);
-  // Close drawer when a sub-link (inside accordion panel) is clicked
-  drawer.querySelectorAll('.drawer-accordion-panel a').forEach(a => a.addEventListener('click', closeMenu));
-  // Close drawer for top-level direct links
-  document.querySelectorAll('#drawerLinks > a').forEach(a => a.addEventListener('click', closeMenu));
 
-  /* ── Drawer accordion toggles ── */
+  if (hamburger && overlay && drawer) {
+    function openMenu() {
+      menuOpen = true;
+      document.body.style.overflow = 'hidden';
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded','true');
+      hamburger.setAttribute('aria-label','Close menu');
+      overlay.classList.add('open');
+      drawer.classList.add('open');
+      
+      const items = Array.from(drawer.querySelectorAll('.drawer-links > a, .drawer-links > .drawer-accordion'));
+      items.forEach((el, i) => {
+        el.style.transitionDelay = (120 + i * 60) + 'ms';
+        setTimeout(() => el.classList.add('visible'), 10);
+      });
+      if(dCtas) {
+        dCtas.style.transitionDelay = (120 + items.length * 60 + 60) + 'ms';
+        setTimeout(() => dCtas.classList.add('visible'), 10);
+      }
+    }
+
+    function closeMenu() {
+      menuOpen = false;
+      document.body.style.overflow = '';
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded','false');
+      hamburger.setAttribute('aria-label','Open menu');
+      overlay.classList.remove('open');
+      drawer.classList.remove('open');
+      
+      drawer.querySelectorAll('.drawer-links > a, .drawer-links > .drawer-accordion').forEach(el => {
+        el.style.transitionDelay = '0ms';
+        el.classList.remove('visible');
+      });
+      dAccordions.forEach(acc => {
+        const panel = acc.querySelector('.drawer-accordion-panel');
+        if (panel) panel.classList.remove('open');
+        const btn = acc.querySelector('.drawer-accordion-btn');
+        if (btn) btn.setAttribute('aria-expanded','false');
+      });
+      if(dCtas) {
+        dCtas.style.transitionDelay = '0ms';
+        dCtas.classList.remove('visible');
+      }
+    }
+
+    hamburger.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+    if (backdrop) backdrop.addEventListener('click', closeMenu);
+    
+    drawer.querySelectorAll('.drawer-accordion-panel a').forEach(a => a.addEventListener('click', closeMenu));
+    drawer.querySelectorAll('.drawer-links > a').forEach(a => a.addEventListener('click', closeMenu));
+  }
+
+  /* ── Reusable Accordion Toggles ── */
   dAccordions.forEach(acc => {
     const btn   = acc.querySelector('.drawer-accordion-btn');
     const panel = acc.querySelector('.drawer-accordion-panel');
-    // Wrap children in a single div for grid collapse trick
+    if (!btn || !panel) return;
+
     if (!panel.querySelector(':scope > div')) {
       const inner = document.createElement('div');
       while (panel.firstChild) inner.appendChild(panel.firstChild);
       panel.appendChild(inner);
     }
+
     btn.addEventListener('click', () => {
       const isOpen = panel.classList.contains('open');
-      // Close all others
       dAccordions.forEach(other => {
-        other.querySelector('.drawer-accordion-panel').classList.remove('open');
-        other.querySelector('.drawer-accordion-btn').setAttribute('aria-expanded','false');
+        const p = other.querySelector('.drawer-accordion-panel');
+        const b = other.querySelector('.drawer-accordion-btn');
+        if(p) p.classList.remove('open');
+        if(b) b.setAttribute('aria-expanded','false');
       });
       if (!isOpen) {
         panel.classList.add('open');
@@ -122,6 +135,18 @@
       }
     });
   });
+
+  /* ── Scroll-aware nav ── */
+  const navElement = document.querySelector('nav');
+  if (navElement) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 40) {
+        navElement.classList.add('scrolled');
+      } else {
+        navElement.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
 
   /* ── Dropdown menus (click to open) ── */
   document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
@@ -139,30 +164,23 @@
     }
   });
 
-  /* ── Scroll-aware nav ── */
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  }, { passive: true });
-
   /* ── Billing toggle ── */
   const toggle = document.getElementById('billingToggle');
   let annual = true;
-  toggle.addEventListener('click', function() {
-    annual = !annual;
-    toggle.classList.toggle('annual', annual);
-    document.querySelectorAll('.plan-price .amount').forEach(el => {
-      const val = annual ? el.dataset.annual : el.dataset.monthly;
-      if (val) el.textContent = val;
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      annual = !annual;
+      toggle.classList.toggle('annual', annual);
+      document.querySelectorAll('.plan-price .amount').forEach(el => {
+        const val = annual ? el.dataset.annual : el.dataset.monthly;
+        if (val) el.textContent = val;
+      });
     });
-  });
+  }
 
   /* ════════════════════════════════
      GSAP PARALLAX & ANIMATIONS STACK
   ════════════════════════════════ */
-  
-  // 1. Hero Dynamic Scroll Parallax Layer
   gsap.to("#heroBg", {
     yPercent: 15,
     ease: "none",
@@ -174,7 +192,6 @@
     }
   });
 
-  // Fade and lift copy components synchronously
   gsap.to("#heroText", {
     y: -40,
     opacity: 0.3,
@@ -187,7 +204,6 @@
     }
   });
 
-  // 2. Mission Section Reveal Sequences
   gsap.from("#missionLeft", {
     x: -50,
     opacity: 0,
@@ -224,7 +240,6 @@
     }
   });
 
-  // 3. Process Section Sequence Steps Stagger (How It Works)
   gsap.from("#howHeader", {
     y: 30,
     opacity: 0,
@@ -259,7 +274,6 @@
     }
   });
 
-  // 4. Pricing Cards Grid Animation Entry
   gsap.from("#pricingHeader", {
     opacity: 0,
     y: 25,
@@ -279,7 +293,6 @@
     }
   });
 
-  // 5. Testimonial Header Row and Slider Container Animation Entrance
   gsap.from("#testimonialsHeader", {
     y: 25,
     opacity: 0,
@@ -294,7 +307,6 @@
     scrollTrigger: { trigger: "#testimonialsCarousel", start: "top 75%" }
   });
 
-  // 6. Global Parallax Section Shift Effect for the CTA Band Section
   gsap.from("#ctaBandSection h2, #ctaBandSection p, #ctaBandSection .cta-band-btns", {
     y: 40,
     opacity: 0,

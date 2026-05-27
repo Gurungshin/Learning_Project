@@ -46,15 +46,24 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background: transparent;
-  transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+  background: rgba(20, 30, 18, 0); /* Completely transparent at top */
+  backdrop-filter: blur(0px); /* No blur at top */
+  -webkit-backdrop-filter: blur(0px);
   border-bottom: 1px solid transparent;
+  transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              -webkit-backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s ease, 
+              padding 0.4s ease;
 }
+
+/* Smoothly apply blur and subtle dark tint on scroll */
 nav.scrolled {
-  background: rgba(20, 30, 18, 0.35);
+  padding: 0.85rem 2rem;
+  background: rgba(20, 30, 18, 0.45);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .logo {
@@ -75,14 +84,35 @@ nav.scrolled {
   gap: 0;
 }
 
+.pill-nav a {
+     font-size: 0.8375rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+    color: rgb(51 100 67);
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 9999px;
+}
+.pill-nav a.active { font-weight: 600; color: rgb(51 100 67); border-radius: 9999px; font-weight: 600; }
+.pill-nav a:hover { color: #ffffff; }
+
+.pill-nav .has-dropdown {
+  position: relative;
+}
+
 nav.scrolled .pill-nav a {
   color: rgba(255, 255, 255, 0.75);
-  font-weight: 500;
+   font-weight: 600;
+}
+
+nav.scrolled .pill-nav nav-a{
+  color: rgb(51 100 67);
+   font-weight: 600;
 }
 
 nav.scrolled .pill-nav .nav-a {
-  color: #333;
-  font-weight: 500;
+  color: rgb(51 100 67) /* Dropdown text dark for white background menu */
 }
 
 nav.scrolled .pill-nav a.active,
@@ -90,7 +120,7 @@ nav.scrolled .pill-nav > a:hover,
 nav.scrolled .pill-nav .has-dropdown > a:hover,
 nav.scrolled .pill-nav .has-dropdown.open > a {
   color: #fff !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 
 nav.scrolled .pill-nav .has-dropdown > a svg {
@@ -100,26 +130,7 @@ nav.scrolled .pill-nav .has-dropdown:hover > a svg,
 nav.scrolled .pill-nav .has-dropdown.open > a svg {
   color: #fff;
 }
-.pill-nav a {
-  font-size: 0.8375rem;
-  padding: 0.5rem 0.75rem;
-  text-decoration: none;
-  transition: color 0.15s, background 0.15s;
-  color: #4b5b47;
-  font-weight: 500;
-  white-space: nowrap;
-  border-radius: 9999px;
-}
-.pill-nav > a:hover,
-.pill-nav .has-dropdown > a:hover {
-  color: #1f2a1d;
-}
-.pill-nav a.active { font-weight: 600; color: #1f2a1d;  border-radius: 9999px; }
-.pill-nav a:hover { color: #1f2a1d; }
 
-.pill-nav .has-dropdown {
-  position: relative;
-}
 .pill-nav .has-dropdown > a {
   display: flex;
   align-items: center;
@@ -133,6 +144,7 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
 .pill-nav .has-dropdown.open > a svg {
   transform: rotate(180deg);
 }
+
 .dropdown-menu {
   position: absolute;
   top: calc(100% + 0.75rem);
@@ -168,11 +180,14 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
 .nav-divider {
   width: 1px;
   height: 1.25rem;
-  background: rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.15);
   margin: 0 0.4rem;
   flex-shrink: 0;
 }
 
+/* ════════════════════════════════
+   FIXED CLASS NAVIGATION REUSED
+════════════════════════════════ */
 .hamburger {
   display: none;
   position: relative;
@@ -188,8 +203,9 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
   color: #fff;
   cursor: pointer;
   transition: background 0.3s;
+  z-index: 35;
 }
-.hamburger:hover { background: rgba(255,255,255,0.25); }
+.hamburger:hover { background: rgb(182 182 182 / 79%); }
 .hamburger svg {
   position: absolute;
   width: 1.25rem;
@@ -218,6 +234,7 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
   -webkit-backdrop-filter: blur(4px);
 }
 .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+
 .mobile-drawer {
   position: fixed;
   top: 0; right: 0; bottom: 0;
@@ -237,7 +254,7 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
 }
 .mobile-drawer.open { transform: translateX(0); }
 .drawer-links { display: flex; flex-direction: column; gap: 0; }
-.drawer-links a {
+.drawer-links > a {
   font-size: 1.2rem;
   font-weight: 600;
   color: #1f2a1d;
@@ -248,7 +265,8 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
   opacity: 0;
   transition: transform 0.5s, opacity 0.5s;
 }
-.drawer-links a.visible { transform: translateX(0); opacity: 1; }
+.drawer-links > a.visible { transform: translateX(0); opacity: 1; }
+
 .drawer-section-label {
   font-size: 0.65rem;
   font-weight: 700;
@@ -261,6 +279,7 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
   transition: transform 0.5s, opacity 0.5s;
 }
 .drawer-section-label.visible { transform: translateX(0); opacity: 1; }
+
 .drawer-ctas {
   margin-top: 1.5rem;
   display: flex;
@@ -282,7 +301,6 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
 }
 .drawer-ctas a svg { width: 1rem; height: 1rem; }
 
-/* Drawer accordion */
 .drawer-accordion {
   border-bottom: 1px solid rgba(31,42,29,0.08);
   transform: translateX(2rem);
@@ -312,20 +330,15 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
   transition: transform 0.3s ease;
   color: #4b5b47;
 }
-.drawer-accordion-btn[aria-expanded="true"] svg {
-  transform: rotate(180deg);
-}
+.drawer-accordion-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+
 .drawer-accordion-panel {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.3s ease;
 }
-.drawer-accordion-panel.open {
-  grid-template-rows: 1fr;
-}
-.drawer-accordion-panel > div {
-  overflow: hidden;
-}
+.drawer-accordion-panel.open { grid-template-rows: 1fr; }
+.drawer-accordion-panel > div { overflow: hidden; }
 .drawer-accordion-panel a {
   display: block;
   font-size: 0.9375rem;
@@ -337,12 +350,15 @@ nav.scrolled .pill-nav .has-dropdown.open > a svg {
   border-left: 2px solid #c5d9c6;
   margin-bottom: 0.25rem;
   transition: color 0.15s, border-color 0.15s;
-  /* override drawer-links a animation for sub-items */
-  transform: none !important;
-  opacity: 1 !important;
 }
 .drawer-accordion-panel a:last-child { margin-bottom: 0.5rem; }
 .drawer-accordion-panel a:hover { color: #336443; border-color: #336443; }
+
+@media (max-width: 1023px) {
+  .pill-nav { display: none; }
+  .hamburger { display: flex; }
+  .mobile-overlay { display: block; }
+}
 
 /* ════════════════════════════════
    HERO COPY
@@ -483,10 +499,6 @@ section.content { padding: 7rem 2.5rem; max-width: 1200px; margin: 0 auto; }
 .section-heading em { font-style: normal; color: #85AB8B; }
 .section-sub { margin-top: 1.25rem; font-size: 1rem; color: #4b5b47; line-height: 1.7; max-width: 32rem; }
 
-/* ════════════════════════════════
-   GSAP INTERACTION / OPACITY REVEAL REPLACEMENTS
-════════════════════════════════ */
-/* Initial state modified dynamically via GSAP instead of strict CSS opacity rules */
 .gsap-reveal {
   will-change: transform, opacity;
 }
@@ -684,22 +696,158 @@ section.content { padding: 7rem 2.5rem; max-width: 1200px; margin: 0 auto; }
 /* ════════════════════════════════
    FOOTER
 ════════════════════════════════ */
-footer { background: #f5f3ee; padding: 4rem 2.5rem 3rem; border-top: 1px solid rgba(0,0,0,0.06); position: relative; z-index: 5; }
-footer .inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-.footer-brand .logo-text { font-size: 1.25rem; font-weight: 600; color: #1f2a1d; letter-spacing: -0.02em; }
-.footer-brand .logo-text sup { font-size: 0.55rem; }
-.footer-brand p { margin-top: 0.875rem; font-size: 0.8125rem; color: #4b5b47; line-height: 1.65; max-width: 18rem; }
-.footer-col h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #2d3a2a; margin-bottom: 1rem; }
-.footer-col ul { list-style: none; }
-.footer-col ul li + li { margin-top: 0.625rem; }
-.footer-col ul li a { font-size: 0.875rem; color: #4b5b47; text-decoration: none; transition: color 0.15s; }
-.footer-col ul li a:hover { color: #1f2a1d; }
-.footer-bottom { max-width: 1200px; margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-.footer-bottom p { font-size: 0.8125rem; color: #4b5b47; }
-.footer-bottom .socials { display: flex; gap: 1rem; }
-.footer-bottom .socials a { width: 2rem; height: 2rem; border-radius: 9999px; background: #fff; border: 1px solid rgba(0,0,0,0.07); display: flex; align-items: center; justify-content: center; color: #4b5b47; text-decoration: none; transition: all 0.15s; }
-.footer-bottom .socials a:hover { background: #1f2a1d; color: #fff; border-color: transparent; }
-.footer-bottom .socials a svg { width: 0.875rem; height: 0.875rem; }
+footer {
+      background: #f5f5f5; /* Light grey/off-white background matching the image */
+      padding: 5rem 2.5rem 0rem; /* Reduced bottom padding because of giant text */
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      position: relative;
+      z-index: 5;
+      overflow: hidden;
+    }
+
+    footer .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      /* 2.5fr for wide brand section, three 1fr columns for links */
+      grid-template-columns: 2.5fr 1fr 1fr 1fr; 
+      gap: 3rem;
+    }
+
+    /* Brand Section (Left Side) */
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-brand .logo-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .footer-brand .logo-text sup {
+      font-size: 0.55rem;
+      font-weight: 700;
+    }
+
+    .footer-brand p {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #666;
+      line-height: 1.5;
+      max-width: 22rem;
+    }
+
+    /* Social Icons under Description */
+    .footer-brand .socials {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .footer-brand .socials a {
+      color: #1a1a1a;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-brand .socials a:hover {
+      opacity: 0.6;
+    }
+
+    .footer-brand .socials a svg {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+
+    /* Link Columns (Right Side) */
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li + li {
+      margin-top: 0.75rem;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.9rem;
+      color: #555;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #000;
+    }
+
+    /* Copyright Row */
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centered layout like image */
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .footer-bottom p strong {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+
+    /* Giant Subtle Text Accent at Bottom */
+    .footer-giant-text {
+      font-size: 11vw; /* Responsive scale text sizing */
+      font-weight: 800;
+      text-align: center;
+      color: #1a1a1a;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      margin-top: 2rem;
+      margin-bottom: -1vw; /* Pulls it slightly down past screen boundaries */
+      text-transform: uppercase;
+      user-select: none;
+      
+      /* Smooth gradient mask matching the image's fading effect */
+      background: linear-gradient(to bottom, #4a7bb0 30%, rgba(245, 245, 245, 0) 95%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      footer .inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .footer-giant-text {
+        font-size: 14vw;
+      }
+    }
 
 /* ════════════════════════════════
    RESPONSIVE
@@ -732,8 +880,7 @@ footer .inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-
   .testimonials-carousel-container::-webkit-scrollbar { display: none; }
   .testimonials-grid { transition: none; }
   .carousel-nav-btns { display: flex; justify-content: center; margin-top: 1.5rem; margin-bottom: 0; }
-  .testimonial-header-row { gap:0px;}
-  .testimonials-carousel-container { margin-top: 2rem;}
+  .testimonial-header-row { gap:0px; }
 }
 @media (max-width: 639px) {
   nav { padding: 0.875rem 1rem; }
