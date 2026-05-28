@@ -14,101 +14,67 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-
 </head>
 <body>
 
-  <nav>
-    <a href="#" class="logo">LinkFlow<sup>TM</sup></a>
+<nav id="mainNav">
+  <a href="index.html" class="logo">LinkFlow<sup>TM</sup></a>
 
-    <div class="pill-nav">
-      <a href="index.html" >Home</a>
+  <div class="pill-nav">
+    <a href="index.html">Home</a>
+    <a href="about_us.html">About Us</a>
 
-        <a href="about_us.html" class="active">About_Us</a>
-
-      <div class="has-dropdown">
-        <a href="#how">
-          Services
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="#how" class="nav-a">Workflow Automation</a>
-          <a href="#how" class="nav-a">FluxEngine AI</a>
-          <a href="#how" class="nav-a">Integrations</a>
-          <a href="#how" class="nav-a">Consulting</a>
-        </div>
+    <div class="has-dropdown">
+      <a href="#" class="active">
+        Services
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="dropdown-menu">
+        <a href="Service-detailed.html" class="nav-a">Workflow Automation</a>
+        <a href="Service-detailed.html" class="nav-a">FluxEngine AI</a>
+        <a href="Service-detailed.html" class="nav-a">Integrations</a>
+        <a href="Service-detailed.html" class="nav-a">Consulting</a>
       </div>
-
-      <a href="#testimonials">Portfolio</a>
-
-      <div class="has-dropdown">
-        <a href="#how">
-          Technologies
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="#how" class="nav-a">FluxEngine™</a>
-          <a href="#how" class="nav-a">API Platform</a>
-          <a href="#how" class="nav-a">Security Stack</a>
-        </div>
-      </div>
-
-      <a href="#">Blog</a>
-      <a href="#">Careers</a>
-      <a href="#">Contact</a>
     </div>
-
-    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-      <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </nav>
-
- <div class="mobile-overlay" id="mobileOverlay">
-    <div class="backdrop" id="overlayBackdrop"></div>
+  
+    <a href="gallery.html">Gallery</a>
+    <a href="blog.html">Blog</a>
+    <a href="#">Careers</a>
+    <a href="#">Contact</a>
   </div>
 
-  <div class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-links" id="drawerLinks">
-      <a href="#">Home</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</nav>
 
-      <a href="#">Home</a>
+<div class="mobile-overlay" id="mobileOverlay"><div class="backdrop"></div></div>
 
-      <!-- Services accordion -->
-      <div class="drawer-accordion">
-        <button class="drawer-accordion-btn" aria-expanded="false">
-          Services
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="drawer-accordion-panel">
-          <a href="#how">Workflow Automation</a>
-          <a href="#how">FluxEngine AI</a>
-          <a href="#how">Integrations</a>
-          <a href="#how">Consulting</a>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-links">
+    <a href="index.html">Home</a>
+    <a href="about_us.html">about_us</a>
+    <div class="drawer-accordion">
+      <button class="drawer-accordion-btn" aria-expanded="false">
+        Services
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="drawer-accordion-panel">
+        <div>
+          <a href="Service-detailed.html">Workflow Automation</a>
+          <a href="Service-detailed.html">FluxEngine AI</a>
+          <a href="Service-detailed.html">Integrations</a>
+          <a href="Service-detailed.html">Consulting</a>
         </div>
       </div>
-
-      <a href="#testimonials">Portfolio</a>
-
-      <!-- Technologies accordion -->
-      <div class="drawer-accordion">
-        <button class="drawer-accordion-btn" aria-expanded="false">
-          Technologies
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="drawer-accordion-panel">
-          <a href="#how">FluxEngine™</a>
-          <a href="#how">API Platform</a>
-          <a href="#how">Security Stack</a>
-        </div>
-      </div>
-
-      <a href="#">Blog</a>
-      <a href="#">Careers</a>
-      <a href="#">Contact</a>
     </div>
-    <div class="drawer-ctas" id="drawerCtas"></div>
+    <a href="gallery.html">Gallery</a>
+    <a href="blog.html">Blog</a>
+    <a href="#">Careers</a>
+    <a href="#">Contact</a>
   </div>
+</div>
 
 <section class="about-hero">
   <div class="about-hero-grid"></div>
@@ -505,109 +471,14 @@
     <div class="footer-giant-text">
       LinkFlow
     </div>
-  </footer>
+</footer>
 
+
+<script src="asset/js/navbar.js"></script>
 <script src="asset/js/scr.js"></script>
 <script src="asset/js/tes.js"></script>
 
 <script>
-    const hamburger = document.getElementById('hamburger');
-  const overlay   = document.getElementById('mobileOverlay');
-  const drawer    = document.getElementById('mobileDrawer');
-  const backdrop  = document.getElementById('overlayBackdrop');
-  const dLinks      = document.querySelectorAll('#drawerLinks > a');
-  const dAccordions = document.querySelectorAll('#drawerLinks .drawer-accordion');
-  const dCtas       = document.getElementById('drawerCtas');
-  let menuOpen = false;
-  function openMenu() {
-    menuOpen = true;
-    document.body.style.overflow = 'hidden';
-    hamburger.classList.add('open');
-    hamburger.setAttribute('aria-expanded','true');
-    hamburger.setAttribute('aria-label','Close menu');
-    overlay.classList.add('open');
-    drawer.classList.add('open');
-    const items = Array.from(document.querySelectorAll('#drawerLinks > a, #drawerLinks > .drawer-accordion'));
-    items.forEach((el, i) => {
-      el.style.transitionDelay = (120 + i * 60) + 'ms';
-      setTimeout(() => el.classList.add('visible'), 10);
-    });
-    dCtas.style.transitionDelay = (120 + items.length * 60 + 60) + 'ms';
-    setTimeout(() => dCtas.classList.add('visible'), 10);
-  }
-  function closeMenu() {
-    menuOpen = false;
-    document.body.style.overflow = '';
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
-    hamburger.setAttribute('aria-label','Open menu');
-    overlay.classList.remove('open');
-    drawer.classList.remove('open');
-    document.querySelectorAll('#drawerLinks > a, #drawerLinks > .drawer-accordion').forEach(el => {
-      el.style.transitionDelay = '0ms';
-      el.classList.remove('visible');
-    });
-    dAccordions.forEach(acc => {
-      acc.querySelector('.drawer-accordion-panel').classList.remove('open');
-      acc.querySelector('.drawer-accordion-btn').setAttribute('aria-expanded','false');
-    });
-    dCtas.style.transitionDelay = '0ms';
-    dCtas.classList.remove('visible');
-  }
-  hamburger.addEventListener('click', ()=>menuOpen?closeMenu():openMenu());
-  backdrop.addEventListener('click', closeMenu);
-  // Close drawer when a sub-link (inside accordion panel) is clicked
-  drawer.querySelectorAll('.drawer-accordion-panel a').forEach(a => a.addEventListener('click', closeMenu));
-  // Close drawer for top-level direct links
-  document.querySelectorAll('#drawerLinks > a').forEach(a => a.addEventListener('click', closeMenu));
-
-  /* ── Drawer accordion toggles ── */
-  dAccordions.forEach(acc => {
-    const btn   = acc.querySelector('.drawer-accordion-btn');
-    const panel = acc.querySelector('.drawer-accordion-panel');
-    // Wrap children in a single div for grid collapse trick
-    if (!panel.querySelector(':scope > div')) {
-      const inner = document.createElement('div');
-      while (panel.firstChild) inner.appendChild(panel.firstChild);
-      panel.appendChild(inner);
-    }
-    btn.addEventListener('click', () => {
-      const isOpen = panel.classList.contains('open');
-      // Close all others
-      dAccordions.forEach(other => {
-        other.querySelector('.drawer-accordion-panel').classList.remove('open');
-        other.querySelector('.drawer-accordion-btn').setAttribute('aria-expanded','false');
-      });
-      if (!isOpen) {
-        panel.classList.add('open');
-        btn.setAttribute('aria-expanded','true');
-      }
-    });
-  });
-
-  /* ── Dropdown menus (click to open) ── */
-  document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const parent = this.closest('.has-dropdown');
-      const isOpen = parent.classList.contains('open');
-      document.querySelectorAll('.has-dropdown').forEach(d => d.classList.remove('open'));
-      if (!isOpen) parent.classList.add('open');
-    });
-  });
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.has-dropdown')) {
-      document.querySelectorAll('.has-dropdown').forEach(d => d.classList.remove('open'));
-    }
-  });
-
-  /* ── Scroll-aware nav ── */
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  }, { passive: true });
-
   /* ── Billing toggle ── */
   const toggle = document.getElementById('billingToggle');
   let annual = true;

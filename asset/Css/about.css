@@ -4,6 +4,7 @@ html { scroll-behavior: smooth; overflow-x: hidden; }
 
 .pill-nav a {  color: #fff; }
 .pill-nav a.active {  color: #fff;  }
+.nav-a{color: #4b5b47 !important;}
 
 /* ═══ ABOUT HERO ═══ */
 .about-hero {
