@@ -12,10 +12,11 @@
 <link rel="stylesheet" href="asset/Css/style.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
+<link rel="stylesheet" href="asset/Css/about.css"/>
 
 </head>
 <body>
+
 
 <section class="hero">
   <div class="bg-layer" id="heroBg">
@@ -26,96 +27,64 @@
     <canvas id="bgCanvas" style="display:none"></canvas>
   </div>
 
-  <nav>
-    <a href="#" class="logo">LinkFlow<sup>TM</sup></a>
+ <nav id="mainNav">
+  <a href="index.html" class="logo">LinkFlow<sup>TM</sup></a>
 
-    <div class="pill-nav">
-      <a href="#" class="active">Home</a>
+  <div class="pill-nav">
+    <a href="index.html">Home</a>
+    <a href="about_us.html">About Us</a>
 
-     
-        <a href="about_us.html">About Us</a>
+    <div class="has-dropdown">
+      <a href="#" class="active">
+        Services
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="dropdown-menu">
+        <a href="Service-detailed.html" class="nav-a">Workflow Automation</a>
+        <a href="Service-detailed.html" class="nav-a">FluxEngine AI</a>
+        <a href="Service-detailed.html" class="nav-a">Integrations</a>
+        <a href="Service-detailed.html" class="nav-a">Consulting</a>
+      </div>
+    </div>
   
-
-      <div class="has-dropdown">
-        <a href="#how">
-          Services
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="#how" class="nav-a">Workflow Automation</a>
-          <a href="#how" class="nav-a">FluxEngine AI</a>
-          <a href="#how" class="nav-a">Integrations</a>
-          <a href="#how" class="nav-a">Consulting</a>
-        </div>
-      </div>
-
-      <a href="#testimonials">Portfolio</a>
-
-      <div class="has-dropdown">
-        <a href="#how">
-          Technologies
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="#how" class="nav-a">FluxEngine™</a>
-          <a href="#how" class="nav-a">API Platform</a>
-          <a href="#how" class="nav-a">Security Stack</a>
-        </div>
-      </div>
-
-      <a href="#">Blog</a>
-      <a href="#">Careers</a>
-      <a href="#">Contact</a>
-    </div>
-
-    <button class="hamburger" aria-label="Open menu" aria-expanded="false">
-      <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </nav>
-
-  <div class="mobile-overlay">
-    <div class="backdrop"></div>
+    <a href="gallery.html">Gallery</a>
+    <a href="blog.html">Blog</a>
+    <a href="#">Careers</a>
+    <a href="#">Contact</a>
   </div>
 
-  <div class="mobile-drawer">
-    <div class="drawer-links">
-      <a href="#">Home</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</nav>
 
-    <a href="about_us.html">Home</a>
-      <div class="drawer-accordion">
-        <button class="drawer-accordion-btn" aria-expanded="false">
-          Services
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="drawer-accordion-panel">
-          <a href="#how">Workflow Automation</a>
-          <a href="#how">FluxEngine AI</a>
-          <a href="#how">Integrations</a>
-          <a href="#how">Consulting</a>
+<div class="mobile-overlay" id="mobileOverlay"><div class="backdrop"></div></div>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-links">
+    <a href="index.html">Home</a>
+    <a href="about_us.html">about_us</a>
+    <div class="drawer-accordion">
+      <button class="drawer-accordion-btn" aria-expanded="false">
+        Services
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="drawer-accordion-panel">
+        <div>
+          <a href="Service-detailed.html">Workflow Automation</a>
+          <a href="Service-detailed.html">FluxEngine AI</a>
+          <a href="Service-detailed.html">Integrations</a>
+          <a href="Service-detailed.html">Consulting</a>
         </div>
       </div>
-
-      <a href="#testimonials">Portfolio</a>
-
-      <div class="drawer-accordion">
-        <button class="drawer-accordion-btn" aria-expanded="false">
-          Technologies
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="drawer-accordion-panel">
-          <a href="#how">FluxEngine™</a>
-          <a href="#how">API Platform</a>
-          <a href="#how">Security Stack</a>
-        </div>
-      </div>
-
-      <a href="#">Blog</a>
-      <a href="#">Careers</a>
-      <a href="#">Contact</a>
     </div>
-    <div class="drawer-ctas"></div>
+    <a href="gallery.html">Gallery</a>
+    <a href="blog.html">Blog</a>
+    <a href="#">Careers</a>
+    <a href="#">Contact</a>
   </div>
+</div>
 
   <div class="hero-copy" id="heroText">
     <h1>Close the rift <span class="accent">linking<br>signals and action</span></h1>
@@ -430,6 +399,7 @@
     </div>
   </footer>
 
+  <script src="asset/js/navbar.js"></script>
 <script src="asset/js/scr.js"></script>
 <script src="asset/js/tes.js"></script>
 </body>
