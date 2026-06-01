@@ -30,6 +30,8 @@
     margin: 0 auto;
     padding: 0 24px;
   }
+
+  
   .w-100 { width: 100% !important; }
   .position-relative { position: relative !important; }
   .position-absolute { position: absolute !important; }
@@ -419,18 +421,7 @@
 <script src="asset/js/tes.js"></script>
 
 <script>
-  gsap.registerPlugin(ScrollTrigger);
   
-  gsap.from('#valuesHeader', {
-    y: 24, opacity: 0, duration: 0.7, ease: 'power3.out',
-    scrollTrigger: { trigger: '#valuesHeader', start: 'top 80%' }
-  });
-  
-  // Re-targeted GSAP reveals to match custom grid component children elements securely
-  gsap.from('.contact-split-grid .gsap-reveal', {
-    y: 30, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power2.out',
-    scrollTrigger: { trigger: '.contact-split-grid', start: 'top 75%' }
-  });
 </script>
 
 </body>

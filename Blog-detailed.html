@@ -431,30 +431,9 @@
 </footer>
 
 <script src="asset/js/navbar.js"></script>
-<script>
+<script src="asset/js/rest.js">
   // Dynamic GSAP transitions 
-  gsap.registerPlugin(ScrollTrigger);
   
-  gsap.from('.hero-banner-text', { y: 24, opacity: 0, duration: 0.9, ease: 'power3.out', delay: 0.15 });
-  
-  document.querySelectorAll('.gsap-reveal').forEach(el => {
-    gsap.from(el, {
-      y: 24, opacity: 0, duration: 0.8, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 85%' }
-    });
-  });
-
-  // Smooth pinning ScrollTrigger bound to native split layout selectors
-  ScrollTrigger.create({
-    trigger: "#stickySidebarInner",
-    start: "top 120px", 
-    endTrigger: "#articleContent", 
-    end: "bottom bottom", 
-    pin: true,
-    pinSpacing: false,
-    invalidateOnRefresh: true,
-    matchMedia: "(min-width: 992px)"
-  });
 </script>
 </body>
 </html>
