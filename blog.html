@@ -10,17 +10,143 @@
 <link href="https://db.onlinewebfonts.com/c/6e47ef470dd19698c911332a9b4d1cf4?family=Neue+Haas+Grotesk+Text+Pro" rel="stylesheet" />
 <link href="https://db.onlinewebfonts.com/c/dec0d9b4e22ca588dc20e1e2e09a59b5?family=Neue+Haas+Grotesk+Display+Pro+55+Roman" rel="stylesheet" />
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
 <link rel="stylesheet" href="asset/Css/style.css" />
 <link rel="stylesheet" href="asset/Css/service.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+<style>
+  /* Base Reset and Wrappers */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .custom-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .py-5 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .mb-2 { margin-bottom: 8px; }
+  .mb-3 { margin-bottom: 16px; }
+  .mb-5 { margin-bottom: 40px; }
+  .m-0 { margin: 0; }
+  .w-100 { width: 100% !important; }
+  .h-100 { height: 100% !important; }
+  .position-relative { position: relative !important; }
+  .position-absolute { position: absolute !important; }
+  .bottom-0 { bottom: 0 !important; }
+  .start-0 { left: 0 !important; }
+  
+  /* Flexbox & Typography Rules */
+  .d-flex { display: flex !important; }
+  .align-items-center { align-items: center !important; }
+  .flex-column { flex-direction: column !important; }
+  .flex-grow-1 { flex-grow: 1 !important; }
+  .gap-1 { gap: 4px !important; }
+  .gap-2 { gap: 8px !important; }
+  .text-white { color: #ffffff !important; }
+  .text-dark { color: #212529 !important; }
+  .text-muted { color: #6c757d !important; }
+  .text-uppercase { text-transform: uppercase !important; }
+  .fw-bold { font-weight: 700 !important; }
+  .fw-semibold { font-weight: 600 !important; }
+  .fw-normal { font-weight: 400 !important; }
+  .text-decoration-none { text-decoration: none !important; }
+  
+  /* Protected Grid Container */
+  .blog-grid-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Renamed Blog Cards to Prevent Sheet Inheritance Faults */
+  .lf-blog-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    background: #ffffff !important;
+    border-radius: 1.25rem !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  .lf-img-container {
+    position: relative !important;
+    height: 220px !important;
+    overflow: hidden !important;
+    background-color: #f8f9fa !important;
+  }
+  .lf-img-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+  .lf-card-badge {
+    position: absolute !important;
+    top: 1rem !important;
+    left: 1rem !important;
+    background: #ffffff !important;
+    color: #212529 !important;
+    font-weight: 700 !important;
+    padding: 6px 14px !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
+    z-index: 2;
+  }
+  .lf-card-body {
+    padding: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+  }
+  .lf-card-body h3 {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: #212529 !important;
+    margin: 0 0 12px 0 !important;
+  }
+  .lf-card-body p {
+    font-size: 0.9rem !important;
+    color: #6c757d !important;
+    line-height: 1.6;
+    margin: 0 0 24px 0 !important;
+  }
+
+  /* Responsive Media Rules */
+  @media (min-width: 768px) {
+    .blog-grid-wrapper {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  @media (min-width: 992px) {
+    .blog-grid-wrapper {
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 32px !important;
+    }
+    .py-5 {
+      padding-top: 80px !important;
+      padding-bottom: 80px !important;
+    }
+  }
+</style>
 </head>
 <body>
 
- <nav id="mainNav">
+<nav id="mainNav">
   <a href="index.html" class="logo">LinkFlow<sup>TM</sup></a>
 
   <div class="pill-nav">
@@ -84,135 +210,124 @@
   <div class="hero-banner-overlay"></div>
   
   <div class="hero-banner-text w-100 position-absolute bottom-0 start-0">
-    <div class="container py-5 px-4 px-md-3">
+    <div class="custom-container" style="padding-top: 48px; padding-bottom: 48px;">
       <div class="hero-eyebrow mb-2"><span></span> Blog </div>
-      <h1 class="text-white display-4 m-0">Blog cards</h1>
+      <h1 class="text-white m-0" style="font-size: calc(1.425rem + 2.1vw); font-weight: 300; line-height: 1.2;">Blog cards</h1>
     </div>
   </div>
 </div>
 
-<section id="values" class="py-5" style="background-color: #faf9f5;">
-  <div class="container py-lg-4">
+<section id="values" class="py-5" style="background-color: #faf9f5; display: block !important;">
+  <div class="custom-container">
     
-    <div class="gsap-reveal mb-5 " id="valuesHeader">
+    <div class="gsap-reveal mb-5" id="valuesHeader">
       <div class="section-eyebrow mb-3 d-flex align-items-center gap-2">
         <span class="text-uppercase fw-bold" style="font-size: 0.6875rem; color: #336443; letter-spacing: 0.12em;">Blog</span>
       </div>
-      <h2 class="h1 fw-normal text-dark mb-0" style="letter-spacing: -0.03em;">The principles that shape everything </h2>
+      <h2 class="fw-normal text-dark mb-0" style="font-size: calc(1.375rem + 1.5vw); line-height: 1.2; letter-spacing: -0.03em;">The principles that shape everything </h2>
     </div>
 
-    <div class="row g-4">
+    <div class="blog-grid-wrapper">
       
-      <div class="col-12 col-md-6 col-lg-4 gsap-reveal">
-        <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="position-relative bg-light" style="height: 200px; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Ruthless reliability" />
-            <span class="badge position-absolute top-3 start-3 bg-white text-dark fw-bold px-3 py-2 border" style="border-radius: 20px; font-size: 0.75rem; top: 1rem; left: 1rem;">01</span>
-          </div>
-          <div class="card-body p-4 d-flex flex-column">
-            <h3 class="h5 fw-semibold text-dark mb-2">Ruthless reliability</h3>
-            <p class="card-text text-muted small mb-4 flex-grow-1" style="line-height: 1.65;">
-              Workflows are mission-critical infrastructure. We hold ourselves to 99.99% uptime and treat every downtime minute as a personal failure. Reliability isn't a feature — it's the foundation.
-            </p>
-            <a href="#" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-auto" style="color: #336443; font-size: 0.875rem;">
-              Read More 
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+      <div class="lf-blog-card gsap-reveal">
+        <div class="lf-img-container">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Ruthless reliability" />
+          <span class="lf-card-badge">01</span>
+        </div>
+        <div class="lf-card-body">
+          <h3>Ruthless reliability</h3>
+          <p class="flex-grow-1">
+            Workflows are mission-critical infrastructure. We hold ourselves to 99.99% uptime and treat every downtime minute as a personal failure. Reliability isn't a feature — it's the foundation.
+          </p>
+          <a href="#" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1" style="color: #336443; font-size: 0.875rem;">
+            Read More 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
       
-      <div class="col-12 col-md-6 col-lg-4 gsap-reveal">
-        <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="position-relative bg-light" style="height: 200px; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="People over pipelines" />
-            <span class="badge position-absolute top-3 start-3 bg-white text-dark fw-bold px-3 py-2 border" style="border-radius: 20px; font-size: 0.75rem; top: 1rem; left: 1rem;">02</span>
-          </div>
-          <div class="card-body p-4 d-flex flex-column">
-            <h3 class="h5 fw-semibold text-dark mb-2">People over pipelines</h3>
-            <p class="card-text text-muted small mb-4 flex-grow-1" style="line-height: 1.65;">
-              Technology should amplify human judgement, not replace it. We build tools that give people back the time to think, create, and make decisions — not tools that make decisions for them.
-            </p>
-            <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-auto" style="color: #336443; font-size: 0.875rem;">
-              Read More 
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+      <div class="lf-blog-card gsap-reveal">
+        <div class="lf-img-container">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="People over pipelines" />
+          <span class="lf-card-badge">02</span>
+        </div>
+        <div class="lf-card-body">
+          <h3>People over pipelines</h3>
+          <p class="flex-grow-1">
+            Technology should amplify human judgement, not replace it. We build tools that give people back the time to think, create, and make decisions — not tools that make decisions for them.
+          </p>
+          <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1" style="color: #336443; font-size: 0.875rem;">
+            Read More 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
       
-      <div class="col-12 col-md-6 col-lg-4 gsap-reveal">
-        <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="position-relative bg-light" style="height: 200px; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Radical transparency" />
-            <span class="badge position-absolute top-3 start-3 bg-white text-dark fw-bold px-3 py-2 border" style="border-radius: 20px; font-size: 0.75rem; top: 1rem; left: 1rem;">03</span>
-          </div>
-          <div class="card-body p-4 d-flex flex-column">
-            <h3 class="h5 fw-semibold text-dark mb-2">Radical transparency</h3>
-            <p class="card-text text-muted small mb-4 flex-grow-1" style="line-height: 1.65;">
-              Every workflow run is fully observable. Every pricing tier is honestly documented. We don't hide complexity behind abstraction — we make it legible so you stay in control.
-            </p>
-            <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-auto" style="color: #336443; font-size: 0.875rem;">
-              Read More 
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+      <div class="lf-blog-card gsap-reveal">
+        <div class="lf-img-container">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Radical transparency" />
+          <span class="lf-card-badge">03</span>
+        </div>
+        <div class="lf-card-body">
+          <h3>Radical transparency</h3>
+          <p class="flex-grow-1">
+            Every workflow run is fully observable. Every pricing tier is honestly documented. We don't hide complexity behind abstraction — we make it legible so you stay in control.
+          </p>
+          <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1" style="color: #336443; font-size: 0.875rem;">
+            Read More 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
       
-      <div class="col-12 col-md-6 col-lg-4 gsap-reveal">
-        <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="position-relative bg-light" style="height: 200px; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Default to speed" />
-            <span class="badge position-absolute top-3 start-3 bg-white text-dark fw-bold px-3 py-2 border" style="border-radius: 20px; font-size: 0.75rem; top: 1rem; left: 1rem;">04</span>
-          </div>
-          <div class="card-body p-4 d-flex flex-column">
-            <h3 class="h5 fw-semibold text-dark mb-2">Default to speed</h3>
-            <p class="card-text text-muted small mb-4 flex-grow-1" style="line-height: 1.65;">
-              Slow iteration is a form of disrespect to the people waiting for a solution. We ship fast, learn fast, and fix fast. Perfection is a direction, not a destination before launch.
-            </p>
-            <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-auto" style="color: #336443; font-size: 0.875rem;">
-              Read More 
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+      <div class="lf-blog-card gsap-reveal">
+        <div class="lf-img-container">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Default to speed" />
+          <span class="lf-card-badge">04</span>
+        </div>
+        <div class="lf-card-body">
+          <h3>Default to speed</h3>
+          <p class="flex-grow-1">
+            Slow iteration is a form of disrespect to the people waiting for a solution. We ship fast, learn fast, and fix fast. Perfection is a direction, not a destination before launch.
+          </p>
+          <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1" style="color: #336443; font-size: 0.875rem;">
+            Read More 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
       
-      <div class="col-12 col-md-6 col-lg-4 gsap-reveal">
-        <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="position-relative bg-light" style="height: 200px; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Security is non-negotiable" />
-            <span class="badge position-absolute top-3 start-3 bg-white text-dark fw-bold px-3 py-2 border" style="border-radius: 20px; font-size: 0.75rem; top: 1rem; left: 1rem;">05</span>
-          </div>
-          <div class="card-body p-4 d-flex flex-column">
-            <h3 class="h5 fw-semibold text-dark mb-2">Security is non-negotiable</h3>
-            <p class="card-text text-muted small mb-4 flex-grow-1" style="line-height: 1.65;">
-              We handle sensitive data for thousands of teams. SOC 2 Type II, end-to-end encryption, and zero-trust architecture aren't checkboxes — they're the baseline we hold ourselves to from day one.
-            </p>
-            <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-auto" style="color: #336443; font-size: 0.875rem;">
-              Read More 
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+      <div class="lf-blog-card gsap-reveal">
+        <div class="lf-img-container">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Security is non-negotiable" />
+          <span class="lf-card-badge">05</span>
+        </div>
+        <div class="lf-card-body">
+          <h3>Security is non-negotiable</h3>
+          <p class="flex-grow-1">
+            We handle sensitive data for thousands of teams. SOC 2 Type II, end-to-end encryption, and zero-trust architecture aren't checkboxes — they're the baseline we hold ourselves to from day one.
+          </p>
+          <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1" style="color: #336443; font-size: 0.875rem;">
+            Read More 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
       
-      <div class="col-12 col-md-6 col-lg-4 gsap-reveal">
-        <div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="position-relative bg-light" style="height: 200px; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Genuine curiosity" />
-            <span class="badge position-absolute top-3 start-3 bg-white text-dark fw-bold px-3 py-2 border" style="border-radius: 20px; font-size: 0.75rem; top: 1rem; left: 1rem;">06</span>
-          </div>
-          <div class="card-body p-4 d-flex flex-column">
-            <h3 class="h5 fw-semibold text-dark mb-2">Genuine curiosity</h3>
-            <p class="card-text text-muted small mb-4 flex-grow-1" style="line-height: 1.65;">
-              The best automation ideas don't come from engineers alone — they come from listening obsessively to the people running operations at 2am. We stay close to the problem, always.</p>
-            <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-auto" style="color: #336443; font-size: 0.875rem;">
-              Read More 
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+      <div class="lf-blog-card gsap-reveal">
+        <div class="lf-img-container">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Genuine curiosity" />
+          <span class="lf-card-badge">06</span>
+        </div>
+        <div class="lf-card-body">
+          <h3>Genuine curiosity</h3>
+          <p class="flex-grow-1">
+            The best automation ideas don't come from engineers alone — they come from listening obsessively to the people running operations at 2am. We stay close to the problem, always.
+          </p>
+          <a href="Blog-detailed.html" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1" style="color: #336443; font-size: 0.875rem;">
+            Read More 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
 
@@ -287,14 +402,11 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <script src="asset/js/navbar.js"></script>
 <script src="asset/js/scr.js"></script>
 <script src="asset/js/tes.js"></script>
 
 <script>
-  // Preservation of custom GSAP triggers over rewritten elements
   gsap.registerPlugin(ScrollTrigger);
   
   gsap.from('#heroLeft', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' });
@@ -305,9 +417,10 @@
     scrollTrigger: { trigger: '#valuesHeader', start: 'top 80%' }
   });
   
-  gsap.from('#values .value-card', {
+  // Script hooks target updated layout tokens cleanly
+  gsap.from('.lf-blog-card', {
     y: 30, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out',
-    scrollTrigger: { trigger: '#values .row', start: 'top 75%' }
+    scrollTrigger: { trigger: '.blog-grid-wrapper', start: 'top 75%' }
   });
 </script>
 

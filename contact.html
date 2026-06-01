@@ -10,20 +10,186 @@
 <link href="https://db.onlinewebfonts.com/c/6e47ef470dd19698c911332a9b4d1cf4?family=Neue+Haas+Grotesk+Text+Pro" rel="stylesheet" />
 <link href="https://db.onlinewebfonts.com/c/dec0d9b4e22ca588dc20e1e2e09a59b5?family=Neue+Haas+Grotesk+Display+Pro+55+Roman" rel="stylesheet" />
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
 <link rel="stylesheet" href="asset/Css/style.css" />
 <link rel="stylesheet" href="asset/Css/service.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <style>
+  /* Base Layout Architecture */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .custom-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .w-100 { width: 100% !important; }
+  .position-relative { position: relative !important; }
+  .position-absolute { position: absolute !important; }
+  .bottom-0 { bottom: 0 !important; }
+  .start-0 { left: 0 !important; }
+  
+  /* Flexbox & Helper Utilities */
+  .d-flex { display: flex !important; }
+  .align-items-center { align-items: center !important; }
+  .flex-column { flex-direction: column !important; }
+  .gap-2 { gap: 8px !important; }
+  .gap-3 { gap: 16px !important; }
+  .gap-4 { gap: 24px !important; }
+  
+  /* Typography Utilities */
+  .text-white { color: #ffffff !important; }
+  .text-dark { color: #212529 !important; }
+  .text-muted { color: #6c757d !important; }
+  .text-uppercase { text-transform: uppercase !important; }
+  .fw-bold { font-weight: 700 !important; }
+  .fw-semibold { font-weight: 600 !important; }
+  .fw-normal { font-weight: 400 !important; }
+  .text-decoration-none { text-decoration: none !important; }
+  .small { font-size: 0.875rem !important; }
+  .m-0 { margin: 0 !important; }
+  .mb-0 { margin-bottom: 0 !important; }
+  .mb-2 { margin-bottom: 8px !important; }
+  .mb-3 { margin-bottom: 16px !important; }
+  .mb-4 { margin-bottom: 24px !important; }
+  .mb-5 { margin-bottom: 40px !important; }
+  .mt-3 { margin-top: 16px !important; }
+  .py-5 { padding-top: 60px; padding-bottom: 60px; }
 
+  /* Grid Layout Core */
+  .contact-split-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* Native Custom Card Containers */
+  .contact-info-card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+  .contact-info-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #336443;
+    margin: 0 0 8px 0;
+  }
+  .contact-info-card p {
+    font-size: 0.875rem;
+    color: #6c757d;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* Form Container Module */
+  .form-wrapper-card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    padding: 32px 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  }
+  .form-wrapper-card h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #212529;
+    margin: 0 0 32px 0;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Form Element Architecture */
+  .form-row-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .form-group-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  .form-group-field label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #6c757d;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .form-group-field input, 
+  .form-group-field textarea {
+    width: 100%;
+    padding: 16px;
+    border-radius: 0.75rem;
+    border: 1.5px solid #e5e5e5;
+    background: #fafafa;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #212529;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .form-group-field input:focus, 
+  .form-group-field textarea:focus {
+    border-color: #336443;
+  }
+  .submit-btn-native {
+    width: 100%;
+    padding: 16px;
+    background: #111612;
+    color: #ffffff;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s ease;
+  }
+  .submit-btn-native:hover {
+    background: #222c24;
+  }
+
+  /* Embedded Map Block */
+  .map-wrapper {
+    width: 100%;
+    height: 450px;
+    margin-top: 40px;
+  }
+  .map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Responsive Adjustments Override Context */
+  @media (min-width: 576px) {
+    .form-row-split {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 992px) {
+    .contact-split-grid {
+      grid-template-columns: 5fr 7fr;
+      gap: 64px;
+    }
+    .form-wrapper-card {
+      padding: 48px;
+    }
+  }
 </style>
 </head>
 <body>
 
- <nav id="mainNav">
+<nav id="mainNav">
   <a href="index.html" class="logo">LinkFlow<sup>TM</sup></a>
 
   <div class="pill-nav">
@@ -87,95 +253,89 @@
   <div class="hero-banner-overlay"></div>
   
   <div class="hero-banner-text w-100 position-absolute bottom-0 start-0">
-    <div class="container py-5 px-4 px-md-3">
+    <div class="custom-container" style="padding-top: 48px; padding-bottom: 48px;">
       <div class="hero-eyebrow mb-2"><span></span> Contact Us </div>
-      <h1 class="text-white display-4 m-0">Get in touch</h1>
+      <h1 class="text-white m-0" style="font-size: calc(1.425rem + 2.1vw); font-weight: 300; line-height: 1.2;">Get in touch</h1>
     </div>
   </div>
 </div>
 
 <section id="values" class="py-5" style="background-color: #faf9f5;">
-  <div class="container py-lg-4">
+  <div class="custom-container">
     
-    <div class="gsap-reveal mb-5 " id="valuesHeader">
+    <div class="gsap-reveal mb-5" id="valuesHeader">
       <div class="section-eyebrow mb-3 d-flex align-items-center gap-2">
         <span class="text-uppercase fw-bold" style="font-size: 0.6875rem; color: #336443; letter-spacing: 0.12em;">Contact</span>
       </div>
-      <h2 class="h1 fw-normal text-dark mb-0" style="letter-spacing: -0.03em;">Get in touch with our team</h2>
+      <h2 class="fw-normal text-dark mb-0" style="font-size: calc(1.375rem + 1.5vw); line-height: 1.2; letter-spacing: -0.03em;">Get in touch with our team</h2>
     </div>
 
-    <div class="row g-5">
+    <div class="contact-split-grid">
       
-      <div class="col-12 col-lg-5 d-flex flex-column gap-4">
+      <div class="gsap-reveal d-flex flex-column gap-4">
         
-        <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="card-body p-4">
-            <h3 class="h6 fw-bold text-dark mb-2" style="color: #336443;">Technical Support</h3>
-            <p class="text-muted small mb-0" style="line-height: 1.65;">
-              Facing issues with your deployments? Our engineers are monitoring systems 24/7.
-            </p>
-            <a href="mailto:support@linkflow.ai" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-3" style="color: #336443; font-size: 0.85rem;">
-              support@linkflow.ai
-            </a>
-          </div>
+        <div class="contact-info-card">
+          <h3>Technical Support</h3>
+          <p>
+            Facing issues with your deployments? Our engineers are monitoring systems 24/7.
+          </p>
+          <a href="mailto:support@linkflow.ai" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-3" style="color: #336443; font-size: 0.85rem;">
+            support@linkflow.ai
+          </a>
         </div>
 
-        <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="card-body p-4">
-            <h3 class="h6 fw-bold text-dark mb-2">Enterprise Sales</h3>
-            <p class="text-muted small mb-0" style="line-height: 1.65;">
-              Looking to deploy isolated zero-trust networks? Let's talk scale.
-            </p>
-            <a href="mailto:sales@linkflow.ai" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-3" style="color: #336443; font-size: 0.85rem;">
-              sales@linkflow.ai
-            </a>
-          </div>
+        <div class="contact-info-card">
+          <h3>Enterprise Sales</h3>
+          <p>
+            Looking to deploy isolated zero-trust networks? Let's talk scale.
+          </p>
+          <a href="mailto:sales@linkflow.ai" class="text-decoration-none fw-semibold d-inline-flex align-items-center gap-1 mt-3" style="color: #336443; font-size: 0.85rem;">
+            sales@linkflow.ai
+          </a>
         </div>
 
-        <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 1.25rem; background: #ffffff;">
-          <div class="card-body p-4">
-            <h3 class="h6 fw-bold text-dark mb-2">Global HQ</h3>
-            <p class="text-muted small mb-0" style="line-height: 1.65;">
-              100 Montgomery St, Suite 1800<br>
-              San Francisco, CA 94104, United States
-            </p>
-          </div>
+        <div class="contact-info-card">
+          <h3>Global HQ</h3>
+          <p>
+            100 Montgomery St, Suite 1800<br>
+            San Francisco, CA 94104, United States
+          </p>
         </div>
 
       </div>
       
-      <div class="col-12 col-lg-7 gsap-reveal">
-        <div class="p-4 p-md-5" style="background: #ffffff; border-radius: 1.25rem; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);">
-          <h3 class="h4 fw-normal text-dark mb-4" style="letter-spacing: -0.02em;">Send us a message</h3>
+      <div class="gsap-reveal">
+        <div class="form-wrapper-card">
+          <h3>Send us a message</h3>
           
           <form id="contactForm" onsubmit="handleFormSubmit(event)">
-            <div class="row g-3 mb-3">
-              <div class="col-12 col-sm-6">
-                <label class="form-label small fw-semibold text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 0.05em;">Full Name *</label>
-                <input type="text" class="form-control p-3" id="userName" placeholder="Jane Doe" required style="border-radius: 0.75rem; border: 1.5px solid #e5e5e5; background: #fafafa;" />
+            
+            <div class="form-row-split">
+              <div class="form-group-field">
+                <label>Full Name *</label>
+                <input type="text" id="userName" placeholder="Jane Doe" required />
               </div>
-              <div class="col-12 col-sm-6">
-                <label class="form-label small fw-semibold text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 0.05em;">Email Address *</label>
-                <input type="email" class="form-control p-3" id="userEmail" placeholder="jane@company.com" required style="border-radius: 0.75rem; border: 1.5px solid #e5e5e5; background: #fafafa;" />
+              <div class="form-group-field">
+                <label>Email Address *</label>
+                <input type="email" id="userEmail" placeholder="jane@company.com" required />
               </div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label small fw-semibold text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 0.05em;">Subject</label>
-              <input type="text" class="form-control p-3" id="formSubject" placeholder="Enterprise Partnership Inquiry" style="border-radius: 0.75rem; border: 1.5px solid #e5e5e5; background: #fafafa;" />
+            <div class="form-group-field" style="margin-top: 8px;">
+              <label>Subject</label>
+              <input type="text" id="formSubject" placeholder="Enterprise Partnership Inquiry" />
             </div>
 
-            <div class="mb-4">
-              <label class="form-label small fw-semibold text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 0.05em;">Your Message *</label>
-              <textarea class="form-control p-3" id="userMessage" rows="5" placeholder="Tell us how we can help your operations..." required style="border-radius: 0.75rem; border: 1.5px solid #e5e5e5; background: #fafafa; resize: vertical;"></textarea>
+            <div class="form-group-field" style="margin-top: 8px; margin-bottom: 32px;">
+              <label>Your Message *</label>
+              <textarea id="userMessage" rows="5" placeholder="Tell us how we can help your operations..." required style="resize: vertical;"></textarea>
             </div>
 
-            <button type="submit" class="btn text-white w-100 p-3 fw-bold" style="background: #111612; border-radius: 0.75rem; transition: background 0.2s;">
+            <button type="submit" class="submit-btn-native">
               Send Message
             </button>
           </form>
 
-  
         </div>
       </div>
 
@@ -254,8 +414,6 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <script src="asset/js/navbar.js"></script>
 <script src="asset/js/scr.js"></script>
 <script src="asset/js/tes.js"></script>
@@ -268,14 +426,12 @@
     scrollTrigger: { trigger: '#valuesHeader', start: 'top 80%' }
   });
   
-  gsap.from('#values .gsap-reveal:not(#valuesHeader)', {
-    y: 30, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out',
-    scrollTrigger: { trigger: '#values .row', start: 'top 75%' }
+  // Re-targeted GSAP reveals to match custom grid component children elements securely
+  gsap.from('.contact-split-grid .gsap-reveal', {
+    y: 30, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power2.out',
+    scrollTrigger: { trigger: '.contact-split-grid', start: 'top 75%' }
   });
-
- 
 </script>
-
 
 </body>
 </html>
